@@ -69,7 +69,7 @@ Project data format:
   "project_id": 0,
   "project_date": "date",
   "project_hours": "string",
-  "sick_date": "string",
+  "sick_date": "date",
   "vacation_date": "date",
  }
 ```
@@ -135,7 +135,7 @@ curl "https://project.services.turntabl.io/v1/api/projects"
 
 ```
 
-This endpoint is used retrieves all projects.
+This endpoint is used to retrieves all projects.
 
 ### HTTP Request
 
@@ -165,7 +165,7 @@ curl "https://project.services.turntabl.io/v1/api/project"
 
 ```
 
-This endpoint is used add new project.
+This endpoint is used to add new project.
 
 ### HTTP Request
 
@@ -197,7 +197,7 @@ curl "https://project.services.turntabl.io/v1/api/projects/assigned/employee/id"
 }
 ```
 
-This endpoint is used retrieves a specific employee's project.
+This endpoint is used to retrieves a specific employee's project.
 
 
 ### HTTP Request
@@ -237,7 +237,7 @@ curl -X POST "https://project.services.turntabl.io/v1/api/project/assign/employe
 }
 ```
 
-This endpoint is used assigns a project to a specific employee
+This endpoint is used to assigns a project to a specific employee
 
 
 ### HTTP Request
@@ -308,7 +308,7 @@ curl -X GET "https://project.services.turntabl.io/v1/api/{end_date}"
 
 ```
 
-This endpoint retrieves all logged project hours.
+This endpoint to retrieves all logged project hours.
 
 ### HTTP Request
 
@@ -376,7 +376,7 @@ H  "Content-Type: application/json"
 
 ```
 
-This endpoint retrieves all log sick hours.
+This endpoint to retrieves all logged sick hours.
 
 ### HTTP Request
 
@@ -410,7 +410,7 @@ d "{  \"employee_email\": \"string\",  \"employee_firstname\": \"string\",  \"em
 
 ```
 
-This endpoint is used to assess log vacation hours
+This endpoint is used to assess logged vacation hours
 
 ### HTTP Request
 
