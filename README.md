@@ -6,7 +6,7 @@
 
 <p align="center">TURNTABL PROJECTS MANAGEMENT SYSTEM'S DOCUMENTATION</p>
 
-<p align="center"><img src="./source/images/tpm.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+<p align="center"><img src="./source/images/tpms.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
 
 
