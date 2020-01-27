@@ -1,11 +1,9 @@
 ---
-title: API Reference
+title:TPMS API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
+ 
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,201 +17,249 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Turntabl Project Management System (TPMS) API. This API documentation contains TPMS API endpoints with regards to Time-entry.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The languages used for TPMS Time entry application are Psql, Java and Angular.
+ 
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Some of the technologies used are SAML, Stored Procedure, Aws RDS, etc.
+
+The Application contains various services: Project Service, Employee Service and Logged Hours Service which use same Database.
+
+The Project Service has various functionalities such as add project, list all project, get project by employee ID and delete project
+
+
+
+
+# User 
+```shell
+#FORMAT OF DATA 
+```
+Represents user details.
+
+## User attributes:
+>
+Employee data format:
+>
+
+```json
+
+  {
+  "employee_id": 0,
+  "employee_firstname": "string",
+  "employee_lastname": "string",
+  "employee_email": "string",  
+ } 
+```
+
+
+Name | Type | Description
+---------|---------- | -----------
+employee_id | Number | unique identifier for employee. 
+employee_firstname | String | First Name. 
+employee_lastname | String | Last Name.
+employee_email | String | Email.
+
+
+> 
+Project data format:
+>
+```json
+ {
+  "project_id": 0,
+  "project_date": "date",
+  "project_hours": "string",
+  "sick_date": "string",
+  "vacation_date": "date",
+ }
+```
+
+
+
+Name |Type| Description
+--------- | ----------- | -----------
+project_id | Number | unique identifier for project
+project_date | Date | Date of project
+project_hours | Number | Hours.
+
+
+Name |Type | Description
+--------- | ----------- | -----------
+sick_date | Date | Date for sick log.
+vacation_date | Date | Date for vacation log.
+
+
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://project.services.turntabl.io/" 
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure you are a Turntabl employee before assess this API.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+TPMS uses SAML to allow access to the API. You can only be registered a new Turntabl employee by the Administrator, TPMS API at our [developer portal](http://turntabl.io/developers).
 
-> Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Make sure you are a Turntabl employee before assess this API
 </aside>
 
-# Kittens
+# Project  Controller
 
-## Get All Kittens
+## Get All Projects
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://project.services.turntabl.io/v1/api/projects" 
+-H  "accept: */*"  
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
+
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "project_id": 1,
+    "project_name": "TPMS WEB APP"    
   },
   {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+   "project_id": 2,
+    "project_name": "AWS"   
   }
-]
+
 ```
 
-This endpoint retrieves all kittens.
+This endpoint is used retrieves all projects.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
 
-### Query Parameters
+`GET https://project.services.turntabl.io/v1/api/projects`
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
-## Get a Specific Kitten
+## Add New Project
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "https://project.services.turntabl.io/v1/api/project" 
+-H  "accept: */*" 
+-H  "Content-Type: application/json" 
+-d "{  \"project_name\": \"string\"}"
 ```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+> The above command returns JSON structured like this:
+
+```json
+
+  {   
+    "project_name": "string"    
+  }
+
 ```
+
+This endpoint is used add new project.
+
+### HTTP Request
+
+
+`POST https://project.services.turntabl.io/v1/api/project`
+
+
+
+
+
+
+
+## Get Projects Assigned to Employee By His/Her ID
+
+
+```shell
+curl "https://project.services.turntabl.io/v1/api/projects/assigned/employee/id" 
+-H  "accept: */*"
+```
+
 
 > The above command returns JSON structured like this:
 
 ```json
 {
   "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "project_name": "AWS",
+  
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint is used retrieves a specific employee's project.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://project.services.turntabl.io/v1/api/projects/assigned/employee/id<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the Employee to retrieve his/her project
 
+
+
+
+
+## Assigned Project to Employee
+
+
+```shell
+curl -X POST "https://project.services.turntabl.io/v1/api/project/assign/employee" 
+-H  "accept: */*" 
+-H  "Content-Type: application/json" 
+-d "{  \"employee_email\": \"string\",  \"employee_firstname\": \"string\",  \"employee_id\": 0,  \"employee_lastname\": \"string\",  \"project_id\": 0}"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "employee_email": "francis.billa@turntabl.io",
+  "employee_firstname": "francis",
+  "employee_id": 4,
+  "employee_lastname": "billa",
+  "project_id": 2
+}
+```
+
+This endpoint is used assigns a project to a specific employee
+
+
+### HTTP Request
+
+`POST https://project.services.turntabl.io/v1/api/project/assign/employee<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the Employee to retrieve his/her project
+
+
+
+<!-- 
 ## Delete a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
 
 ```shell
 curl "http://example.com/api/kittens/2"
   -X DELETE
   -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
 ```
 
 > The above command returns JSON structured like this:
@@ -235,5 +281,184 @@ This endpoint deletes a specific kitten.
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the kitten to delete -->
+
+
+
+
+# Logged Hours Controller
+
+## Get All Logged Hours
+
+
+```shell
+curl -X GET "https://project.services.turntabl.io/v1/api/{end_date}" 
+-H  "accept: */*"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+
+  {
+    "project_id": 1,
+    "project_name": "TPMS WEB APP"    
+  }
+
+```
+
+This endpoint retrieves all logged project hours.
+
+### HTTP Request
+
+`GET https://project.services.turntabl.io/v1/api/{end_date}`
+
+
+
+## Log Project Hour
+
+
+```shell
+curl "https://project.services.turntabl.io/v1/api/project" 
+-H  "accept: */*" 
+-H  "Content-Type: application/json" 
+-d "{  \"project_name\": \"string\"}"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+
+  {
+  "employee_email": "string",
+  "employee_firstname": "string",
+  "employee_id": 0,
+  "employee_lastname": "string",
+  "project_date": "date",
+  "project_hours": 0,
+  "project_id": 0
+}
+
+```
+
+This endpoint is used to log project hours.
+
+### HTTP Request
+
+
+`POST https://project.services.turntabl.io/v1/api/addloggedproject`
+
+
+## Log Sick
+
+
+```shell
+curl -X POST "https://project.services.turntabl.io/v1/api/addloggedsick" 
+-H  "accept: */*" 
+H  "Content-Type: application/json" 
+-d "{  \"employee_email\": \"string\",  \"employee_firstname\": \"string\",  \"employee_id\": 0,  \"employee_lastname\": \"string\",  \"sick_date\": \"string\"}"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+
+  {
+  "employee_email": "string",
+  "employee_firstname": "string",
+  "employee_id": 0,
+  "employee_lastname": "string",
+  "sick_date": "date"
+}
+
+```
+
+This endpoint retrieves all log sick hours.
+
+### HTTP Request
+
+`POST https://project.services.turntabl.io/v1/api/addloggedsick`
+
+
+
+
+## Log Vacation
+
+
+```shell
+curl -X POST "https://project.services.turntabl.io/v1/api/addloggedvaction" 
+-H  "accept: */*" 
+-H  "Content-Type: application/json" -
+d "{  \"employee_email\": \"string\",  \"employee_firstname\": \"string\",  \"employee_id\": 0,  \"employee_lastname\": \"string\",  \"vacation_date\": \"string\"}"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+
+ {
+  "employee_email": "string",
+  "employee_firstname": "string",
+  "employee_id": 0,
+  "employee_lastname": "string",
+  "vacation_date": "date"
+}
+
+```
+
+This endpoint is used to assess log vacation hours
+
+### HTTP Request
+
+`POST https://project.services.turntabl.io/v1/api/addloggedvaction`
+
+
+
+
+
+## Get All logged Projects
+
+
+```shell
+curl -X GET "https://project.services.turntabl.io/v1/api/getloggedproject" 
+-H  "accept: */*"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+
+ {
+      "project_id": 7,
+      "project_hours": 7,
+      "project_date": "2020-01-24",
+      "employee_id": 24,
+      "employee_firstname": "ali",
+      "employee_lastname": "fuseini",
+      "employee_email": "ali.fuseini@turntabl.io"
+    },
+    {
+      "project_id": 1,
+      "project_hours": 5,
+      "project_date": "2020-01-24",
+      "employee_id": 25,
+      "employee_firstname": "Samuel",
+      "employee_lastname": "Osei Kwakye",
+      "employee_email": "samuel.kwakye@turntabl.io"
+    }
+
+```
+
+This endpoint is used to get all logged projects
+
+### HTTP Request
+
+`GET https://project.services.turntabl.io/v1/api/getloggedproject`
+
+
 
