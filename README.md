@@ -6,14 +6,7 @@
 
 <p align="center">TURNTABL PROJECTS MANAGEMENT SYSTEM'S DOCUMENTATION</p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+<p align="center"><img src="./source/images/tpm.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
-
-Features
-------------
-
-
-### Getting Set Up
 
 
