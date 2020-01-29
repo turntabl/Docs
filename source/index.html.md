@@ -135,7 +135,7 @@ curl "https://project.services.turntabl.io/v1/api/projects"
 
 ```
 
-This endpoint is used to retrieves all projects.
+This endpoint is used to retrieve all projects.
 
 ### HTTP Request
 
@@ -197,7 +197,7 @@ curl "https://project.services.turntabl.io/v1/api/projects/assigned/employee/id"
 }
 ```
 
-This endpoint is used to retrieves a specific employee's project.
+This endpoint is used to retrieve a specific employee's project.
 
 
 ### HTTP Request
@@ -237,7 +237,7 @@ curl -X POST "https://project.services.turntabl.io/v1/api/project/assign/employe
 }
 ```
 
-This endpoint is used to assigns a project to a specific employee
+This endpoint is used to assign a project to a specific employee
 
 
 ### HTTP Request
@@ -249,41 +249,6 @@ This endpoint is used to assigns a project to a specific employee
 Parameter | Description
 --------- | -----------
 ID | The ID of the Employee to retrieve his/her project
-
-
-
-<!-- 
-## Delete a Specific Kitten
-
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete -->
-
-
 
 
 # Logged Hours Controller
