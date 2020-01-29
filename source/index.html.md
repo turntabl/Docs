@@ -135,7 +135,7 @@ curl "https://project.services.turntabl.io/v1/api/projects"
 
 ```
 
-This endpoint is used to retrieve all projects.
+This endpoint is use to retrieve all projects.
 
 ### HTTP Request
 
@@ -165,7 +165,7 @@ curl "https://project.services.turntabl.io/v1/api/project"
 
 ```
 
-This endpoint is used to add new project.
+This endpoint is use to add new project.
 
 ### HTTP Request
 
@@ -197,7 +197,7 @@ curl "https://project.services.turntabl.io/v1/api/projects/assigned/employee/id"
 }
 ```
 
-This endpoint is used to retrieve a specific employee's project.
+This endpoint is use to retrieve a specific employee's project.
 
 
 ### HTTP Request
@@ -237,7 +237,7 @@ curl -X POST "https://project.services.turntabl.io/v1/api/project/assign/employe
 }
 ```
 
-This endpoint is used to assign a project to a specific employee
+This endpoint is use to assign a project to a specific employee
 
 
 ### HTTP Request
@@ -308,7 +308,7 @@ curl "https://project.services.turntabl.io/v1/api/project"
 
 ```
 
-This endpoint is used to log project hours.
+This endpoint is use to log project hours.
 
 ### HTTP Request
 
@@ -375,7 +375,7 @@ d "{  \"employee_email\": \"string\",  \"employee_firstname\": \"string\",  \"em
 
 ```
 
-This endpoint is used to assess logged vacation hours
+This endpoint is use to assess logged vacation hours
 
 ### HTTP Request
 
@@ -419,11 +419,8 @@ curl -X GET "https://project.services.turntabl.io/v1/api/getloggedproject"
 
 ```
 
-This endpoint is used to get all logged projects
+This endpoint is use to get all logged projects
 
 ### HTTP Request
 
 `GET https://project.services.turntabl.io/v1/api/getloggedproject`
-
-
-
