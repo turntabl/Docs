@@ -169,8 +169,7 @@ This endpoint is used to add new project.
 
 
 ```shell
-curl "https://project.services.turntabl.io/v1/api/projects/assigned/employee/id" 
--H  "accept: */*"
+curl "https://project.services.turntabl.io/v1/api/projects/assigned/employee/id" -H  "accept: */*"
 ```
 
 > The above command returns JSON structured like this:
